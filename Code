@@ -1,0 +1,73 @@
+# Importing the built-in Iris dataset from scikit-learn
+from sklearn.datasets import load_iris
+
+# Loading the Iris dataset into a variable
+iris = load_iris()
+
+# Splitting the dataset into features (X) and target labels (y)
+x = iris.data                   # Feature values: sepal length, sepal width, petal length, petal width
+y = iris.target                 # Target labels: 0, 1, 2 (species)
+
+# Storing feature names and target names for reference
+features = iris.feature_names   # Names of the 4 features
+target = iris.target_names      # Names of iris flower species
+
+# Importing train_test_split to divide data into training and testing sets
+from sklearn.model_selection import train_test_split
+
+# Splitting the data: 80% for training and 20% for testing
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=1
+)
+
+# Displaying the actual test labels
+print("Test labels:", y_test)
+print('\n')
+
+# Importing the KNN classifier
+from sklearn.neighbors import KNeighborsClassifier
+
+# Creating the KNN model with k=3
+model = KNeighborsClassifier(n_neighbors=3)
+
+# Training the model on the training dataset
+model.fit(x_train, y_train)
+
+# Making predictions on the test dataset
+pred = model.predict(x_test)
+
+# Displaying predicted labels by the model
+print("Predicted labels:", pred)
+
+
+
+# Creating a small custom dataset (unseen data) to test the model further
+# Each row represents a flower with feature values in this order:
+# [sepal length, sepal width, petal length, petal width]
+new_data = [
+    [5.0, 3.4, 1.5, 0.2],  # likely setosa
+    [6.0, 2.7, 4.5, 1.5],  # likely versicolor
+    [6.3, 3.3, 6.0, 2.5],  # likely virginica
+    [5.5, 2.4, 3.7, 1.0],  # likely versicolor
+    [4.8, 3.0, 1.4, 0.1]   # likely setosa
+]
+
+# Using the trained model to predict the species for the new unseen data
+Prediction = model.predict(new_data)
+
+# Converting the numerical predictions (0,1,2) into actual species names
+Predicted_species = [iris.target_names[p] for p in Prediction]
+
+# Printing the predicted species for each sample
+print("Predicted Species:", Predicted_species)
+
+
+# Importing the metrics module to evaluate model performance
+from sklearn import metrics
+
+# Calculating the accuracy of the model by comparing
+# the actual test labels (y_test) with the predicted labels (pred)
+accuracy = metrics.accuracy_score(y_test, pred)
+
+# Printing the accuracy score of the KNN model
+print("Model Accuracy:", accuracy)
