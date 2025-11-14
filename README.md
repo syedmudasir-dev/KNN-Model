@@ -7,13 +7,13 @@ This project is a beginner-friendly data science exploration where I use the K-N
 
 Loading and understanding the built-in Iris dataset
 
-Data exploration and basic visualization
+Data exploration
 
 Splitting the data into training and testing sets
 
 Training a KNN classifier
 
-Evaluating model performance (accuracy score + confusion matrix)
+Evaluating model performance (accuracy score )
 
 Simple, easy-to-read code ideal for beginners
 
@@ -36,12 +36,6 @@ Python data science libraries (NumPy, pandas, Matplotlib, scikit-learn)
 Python
 
 scikit-learn
-
-pandas
-
-NumPy
-
-Matplotlib / Seaborn
 
 🚀 Future Enhancements
 
